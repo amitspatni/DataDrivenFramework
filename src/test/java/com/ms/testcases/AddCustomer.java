@@ -1,56 +1,23 @@
 package com.ms.testcases;
 
 import com.ms.base.TestBase;
-import com.ms.utilities.ExcelReader;
-
+import com.ms.utilities.TestUtilities;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
-import org.testng.Reporter;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import org.testng.asserts.Assertion;
+import org.testng.asserts.SoftAssert;
+
+import java.io.IOException;
 
 public class AddCustomer extends TestBase {
 
-    public static ExcelReader excel = null;
-
-    @DataProvider
-    public static Object[][] getData() {
-
-        String userDirectory = System.getProperty("user.dir");
-        String excelFilePath = userDirectory + "\\src\\test\\resources\\excel\\testdata.xlsx";
 
 
+    @Test(dataProviderClass = TestUtilities.class, dataProvider = "getData")
+    public void addCustomer(String firstName, String lastName, String postalCode, String alertText) throws IOException /* throws InterruptedException */ {
 
-        if (excel==null) {
-
-            excel = new ExcelReader(excelFilePath);
-        }
-
-        String sheetNames = "AddCustomer";
-        int rows = excel.getRowCount(sheetNames);
-        int cols = excel.getColumnCount(sheetNames);
-
-        Object[][] data = new Object[rows-1][cols];
-
-        for (int rowNum=2; rowNum<=rows; rowNum++ ) {
-
-            for (int colNum=0; colNum<cols; colNum++) {
-
-                data[rowNum-2][colNum] =   excel.getCellData(sheetNames, colNum, rowNum);
-
-            }
-        }
-        return data;
-
-    }
-
-
-    @Test(dataProvider = "getData")
-    public void addCustomer(String firstName, String lastName, String postalCode, String alertText) /* throws InterruptedException */ {
+            softAssertion("xyz", "abc");
 
            click("addCustBtn_CSS");
            type("firstNameField_CSS", firstName);
@@ -63,11 +30,12 @@ public class AddCustomer extends TestBase {
 //        driver.findElement(By.cssSelector(OR.getProperty("lastNameField"))).sendKeys(lastName);
 //        driver.findElement(By.cssSelector(OR.getProperty("postalCodeField"))).sendKeys(postalCode);
 //        driver.findElement(By.cssSelector(OR.getProperty("addCustomerBtn"))).click();
-        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-        Assert.assertTrue(alert.getText().contains(alertText));
+          Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+          Assert.assertTrue(alert.getText().contains(alertText));
 
-        alert.accept();
-        Assert.fail("this test cases failed intentionally");
+
+          alert.accept();
+          Assert.fail("this test cases failed intentionally");
 
         //Assert.assertTrue(alert.getText().contains(alertText));
 

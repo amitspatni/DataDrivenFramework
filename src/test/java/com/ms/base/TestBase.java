@@ -2,6 +2,7 @@ package com.ms.base;
 
 
 import com.ms.utilities.ExtentManager;
+import com.ms.utilities.TestUtilities;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
@@ -14,6 +15,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import org.testng.asserts.SoftAssert;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -106,6 +108,17 @@ public class TestBase {
             driver.findElement(By.xpath(OR.getProperty(locators))).sendKeys(inputValues);
             test.log(LogStatus.INFO, "typed on " + locators + "entered values " + inputValues + " using XPATH ") ;
         }
+
+    }
+
+    public void softAssertion(String actual, String expected ) throws IOException {
+
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(actual, expected, "validation failed");
+        TestUtilities.captureScreenshot();
+
+        test.log(LogStatus.WARNING, "This is just the warning");
+        test.log(LogStatus.WARNING,test.addScreenCapture(TestUtilities.screenShotFileName));
 
     }
 
