@@ -5,10 +5,7 @@ package com.ms.listeners;
 import com.ms.base.TestBase;
 import com.ms.utilities.TestUtilities;
 import com.relevantcodes.extentreports.LogStatus;
-import org.testng.ITestContext;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
-import org.testng.Reporter;
+import org.testng.*;
 import org.testng.annotations.Test;
 
 
@@ -26,6 +23,13 @@ public class CustomListeners extends TestBase implements ITestListener {
     public void onTestStart(ITestResult result) {
 
         test = repo.startTest(result.getName().toUpperCase());
+
+        if (!TestUtilities.isTestRunnable(result.getName(),excel )) {
+
+            throw new SkipException("Skipping the tests" + result.getName() + " as the run mode is false");
+        }
+
+
     }
 
     @Override
@@ -58,6 +62,10 @@ public class CustomListeners extends TestBase implements ITestListener {
 
     @Override
     public void onTestSkipped(ITestResult result) {
+
+        test.log(LogStatus.SKIP, "Test is skipped " + result.getName());
+        repo.endTest(test);
+        repo.flush();
 
     }
 

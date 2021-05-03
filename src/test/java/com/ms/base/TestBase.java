@@ -1,6 +1,7 @@
 package com.ms.base;
 
 
+import com.ms.utilities.ExcelReader;
 import com.ms.utilities.ExtentManager;
 import com.ms.utilities.TestUtilities;
 import com.relevantcodes.extentreports.ExtentReports;
@@ -34,8 +35,9 @@ public class TestBase {
     public static Logger log = Logger.getLogger("devpinoyLogger");
     public static WebDriverWait wait;
     public static ExtentReports repo = ExtentManager.getInstance();
-//    public static ExcelReader excel = new ExcelReader("C:\\Users\\user\\Desktop\\CG training\\GithubDemo\\PraticeTestNG\\way2automation_hybrid_framework\\src\\test\\resources\\excel\\testdata.xlsx");
     public static ExtentTest test;
+    public static ExcelReader excel = new ExcelReader(
+            System.getProperty("user.dir") + "\\src\\test\\resources\\excel\\testdata.xlsx");
 
 
 

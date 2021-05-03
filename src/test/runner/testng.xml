@@ -8,8 +8,8 @@
     </listeners>
     <test verbose="2" preserve-order="true" name="Functional Tests">
         <classes>
-            <class name="com.ms.testcases.logintests"></class>
-     <class name="com.ms.testcases.AddCustomer"></class>
+            <class name="com.ms.testcases.Logintests"></class>
+        <class name="com.ms.testcases.AddCustomer"></class>
 
     </classes>
     </test>

@@ -8,6 +8,6 @@
   <properties />
   
   
-            <testcase name="loginAsBankManager" time="0.981" classname="com.ms.testcases.logintests" />
+            <testcase name="loginAsBankManager" time="0.981" classname="com.ms.testcases.Logintests" />
       
 </testsuite>

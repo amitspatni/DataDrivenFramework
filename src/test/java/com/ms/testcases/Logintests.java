@@ -6,10 +6,10 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class logintests extends TestBase {
+public class Logintests extends TestBase {
 
     @Test(priority = 1)
-    public void loginAsBankManager() throws InterruptedException {
+    public void logintests() throws InterruptedException {
 
 // TO-DO logs needs to be fixed
 
