@@ -45,6 +45,8 @@ public class TestBase {
     public void setUp() throws FileNotFoundException, IOException {
         // to be removed
         BasicConfigurator.configure();
+
+
         String prop = System.getProperty("user.dir");
 
         if (driver==null) {
